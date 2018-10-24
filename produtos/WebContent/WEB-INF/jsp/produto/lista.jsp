@@ -29,15 +29,32 @@
 			<td>Usado?</td>
 			<td width="20%">Remover?</td>
 		</tr>
-		
+
 		<!-- usando jstl!!! Atribui cada item que existe no produtoList e atribue à variável 'p'  -->
 		<c:forEach var="p" items="${produtoList}">
 
-			<tr id="produto${p.id}"><!--Exibe id de produto  -->
-				<td>${p.nome}</td><!-- Exibe nome de produto -->
-				<td>${p.preco}</td><!--Exibe preco de produto  -->
-				<td>${p.descricao}</td><!-- Exibe descricao de produto -->
-				<td>${p.dataInicioVenda.time}</td><!-- Exibe a dataInicioVenda de produto -->
+			<tr id="produto${p.id}">
+				<!--Exibe id de produto  -->
+				<td>${p.nome}</td>
+				<!-- Exibe nome de produto -->
+				<td>${p.preco}</td>
+				<!--Exibe preco de produto  -->
+				<td>${p.descricao}</td>
+				<!-- Exibe descricao de produto -->
+				<td>${p.dataInicioVenda.time}</td>
+				<!-- Exibe a dataInicioVenda de produto -->
+
+				<!--Cria status de usado(SIM ou NAO) do produto  -->
+				<c:choose>
+
+					<c:when test="${p.usado}">
+						<td>Sim</td>
+					</c:when>
+
+					<c:otherwise>
+						<td>Não</td>
+					</c:otherwise>
+				</c:choose>
 
 				<td><a href="#" onclick="return removeProduto(${p.id})">Remover</a></td>
 			</tr>
