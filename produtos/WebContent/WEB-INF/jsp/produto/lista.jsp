@@ -32,25 +32,32 @@
 
 		<!-- usando jstl!!! Atribui cada item que existe no produtoList e atribue à variável 'p'  -->
 		<c:forEach var="p" items="${produtoList}">
-
+			<!--Exibe id de produto  -->
 			<tr id="produto${p.id}">
-				<!--Exibe id de produto  -->
-				<td>${p.nome}</td>
 				<!-- Exibe nome de produto -->
-				<td>${p.preco}</td>
+				<td>${p.nome}</td>
 				<!--Exibe preco de produto  -->
-				<td>${p.descricao}</td>
+				<td>
+					<!-- insere vírgula no valor -->
+					<fmt:formatNumber value="${p.preco}" type="currency" />
+				${p.preco}
+				
+				</td>
 				<!-- Exibe descricao de produto -->
-				<td>${p.dataInicioVenda.time}</td>
+				<td>${p.descricao}</td>
 				<!-- Exibe a dataInicioVenda de produto -->
+				<td>
+				
+					<fmt:formatDate value="${p.dataInicioVenda.time}" pattern="dd/MM/yyyy"/>
+				
+				</td>
+
 
 				<!--Cria status de usado(SIM ou NAO) do produto  -->
 				<c:choose>
-
 					<c:when test="${p.usado}">
 						<td>Sim</td>
 					</c:when>
-
 					<c:otherwise>
 						<td>Não</td>
 					</c:otherwise>
@@ -61,8 +68,8 @@
 
 		</c:forEach>
 	</table>
-	<c:url value="/produto/formulario" var = "urlAdicionar" />
-	<a href = "teste"> Teste</a>"
+	<c:url value="/produto/formulario" var="urlAdicionar" />
+	<a href="teste"> Teste</a>"
 	<a href="${urlAdicionar}">Adicionar um produto</a>
 </body>
 </html>
